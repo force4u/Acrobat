@@ -114,7 +114,7 @@ app.addMenuItem({
 	cName: "OpenURL2",
 	cUser: "Acrobat DC SDK Documentation",
 	cParent: "addHelpSubMenuUrl",
-	cExec: "app.launchURL(\"https://opensource.adobe.com/dc-acrobat-sdk-docs/acrobatsdk/documentation.html\", true);",
+	cExec: "app.launchURL(\"https://opensource.adobe.com/dc-acrobat-sdk-docs/acrobatsdk/\", true);",
 	nPos: 2
 });
 app.addMenuItem({
