@@ -102,6 +102,17 @@ app.addMenuItem({
 	cExec: "app.launchURL(\"https://fonts.adobe.com/?locale=ja-JP\", true);",
 	nPos: 9
 });
+app.addMenuItem({
+	cName: "appHelpOpenDocHelpUserGuide",
+	cUser: "■ユーザーガイドを開きます",
+	cLabel: "appHelpOpenGuide",
+	cTooltext: "appHelpOpenGuide",
+	cParent: "addHelpSubMenuAdobe",
+	cExec: "appHelpOpenGuide();",
+	cEnable: "event.rc = true",
+	cMarked: "event.rc = false",
+	nPos: 10,
+});
 ////////////////////////////////////////////
 app.addMenuItem({
 	cName: "OpenURL1",
@@ -168,25 +179,47 @@ app.addMenuItem({
 	cMarked: "event.rc = false",
 	nPos: 22,
 });
-app.addMenuItem({
-	cName: "appHelpOpenDocHelpUserGuide",
-	cUser: "ユーザーガイドを開きます",
-	cLabel: "appHelpOpenGuide",
-	cTooltext: "appHelpOpenGuide",
-	cParent: "addHelpSubMenuOpen",
-	cExec: "appHelpOpenGuide();",
-	cEnable: "event.rc = true",
-	cMarked: "event.rc = false",
-	nPos: 24,
-});
+
 app.addMenuItem({
 	cName: "OpenURL23",
 	cUser: "JavaScripts フォルダを開きます",
 	cParent: "addHelpSubMenuOpen",
-	cExec: "app.launchURL(\"file:///Users/takeshi_matsushima/Library/Application\ Support/Adobe/Acrobat/DC/JavaScripts/\", true);",
-	/////cExec: "app.openDoc(\"/Users/takeshi_matsushima/Library/Application\ Support/Adobe/Acrobat/DC/JavaScripts/\");",
+	cExec: "appGetJavascriptPath()",
 	nPos: 23
 });
+
+function appGetJavascriptPath() {
+	try {
+		var strUserJavascriptDir = app.getPath("user","javascript");
+		var strFilePath = strUserJavascriptDir.replace(/^.*Users/, '/Users');
+		app.launchURL("file://" + strFilePath + "", true);
+	} catch (error) {
+		console.println("メニュー実行エラー（undefined）")
+		return;
+	}
+}
+
+app.addMenuItem({
+	cName: "OpenURL24",
+	cUser: "Stamps フォルダを開きます",
+	cParent: "addHelpSubMenuOpen",
+	cExec: "appGetStampsPath()",
+	nPos: 23
+});
+
+function appGetStampsPath() {
+	try {
+		var strUserStampstDir = app.getPath("user","stamps");
+		var strFilePath = strUserStampstDir.replace(/^.*Users/, '/Users');
+		app.launchURL("file://" + strFilePath + "", true);
+	} catch (error) {
+		console.println("メニュー実行エラー（undefined）")
+		return;
+	}
+}
+
+
+
 app.addMenuItem({
 	cName: "appHelpOpenGeneralInfo",
 	cUser: "文書のプロパティを開きます",
@@ -277,7 +310,9 @@ function appHelpOpenTrustedMenu() {
 	try {
 		var cResponse = app.response({
 			cQuestion: "開きたいPDFのURLを入力",
-			cTitle: "よろしければOKしてください", cDefault: "https://opensource.adobe.com/dc-acrobat-sdk-docs/acrobatsdk/pdfs/acrobatsdk_jsdevguide.pdf#2",
+			cTitle: "よろしければOKしてください", 
+			cDefault: "https://opensource.adobe.com/dc-acrobat-sdk-docs/acrobatsdk/pdfs/acrobatsdk_jsdevguide.pdf#2",
+			bPassword:false,
 			cLabel: "Response:"
 		});
 		if (cResponse == null) {
