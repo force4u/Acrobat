@@ -175,7 +175,7 @@ app.addMenuItem({
 });
 app.addMenuItem({
 	cName: "appHelpOpenTrustedMenu",
-	cUser: "API Referenceを開く",
+	cUser: "API ReferencePDFを開く",
 	cLabel: "appHelpOpenTrustedMenu",
 	cTooltext: "appHelpOpenTrustedMenu",
 	cParent: "addHelpSubMenuUrl",
