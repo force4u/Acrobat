@@ -113,6 +113,23 @@ app.addMenuItem({
 	cMarked: "event.rc = false",
 	nPos: 10,
 });
+app.addMenuItem({
+	cName: "OpenURL16",
+	cUser: "■Acrobatフォーラム",
+	cParent: "addHelpSubMenuAdobe",
+	cExec: "app.launchURL(\"https://community.adobe.com/t5/acrobat%E3%83%95%E3%82%A9%E3%83%BC%E3%83%A9%E3%83%A0/ct-p/ct-acrobat-jp\", true);",
+	nPos: 11
+});
+app.addMenuItem({
+	cName: "OpenURL17",
+	cUser: "■Acrobat Readerフォーラム",
+	cParent: "addHelpSubMenuAdobe",
+	cExec: "app.launchURL(\"https://community.adobe.com/t5/acrobat-reader-acrobat-dc-for-mobile%E3%83%95%E3%82%A9%E3%83%BC%E3%83%A9%E3%83%A0/ct-p/ct-acrobat-reader-and-reader-mobile-jp?page=1&sort=latest_replies&lang=all&tabid=all&profile.language=ja#:~:text=Acrobat%20Reader%20/%20Acrobat%20DC%20for%20Mobile%E3%83%95%E3%82%A9%E3%83%BC%E3%83%A9%E3%83%A0\", true);",
+	nPos: 12
+});
+
+
+
 ////////////////////////////////////////////
 app.addMenuItem({
 	cName: "OpenURL1",
@@ -132,7 +149,7 @@ app.addMenuItem({
 	cName: "OpenURL10",
 	cUser: "JavaScript API",
 	cParent: "addHelpSubMenuUrl",
-	cExec: "app.launchURL(\"https://opensource.adobe.com/dc-acrobat-sdk-docs/acrobatsdk/html2015/index.html#t=Acro12_MasterBook%2FJS_API_AcroJS%2FJavaScript_API.htm\", true);",
+	cExec: "app.launchURL(\"https://opensource.adobe.com/dc-acrobat-sdk-docs/library/jsapiref/JS_API_AcroJS.html\", true);",
 	nPos: 10
 });
 app.addMenuItem({
@@ -166,6 +183,13 @@ app.addMenuItem({
 	cEnable: "event.rc = true",
 	cMarked: "event.rc = false",
 	nPos: 13,
+});
+app.addMenuItem({
+	cName: "OpenURL15",
+	cUser: "Adobe Dev SDK",
+	cParent: "addHelpSubMenuUrl",
+	cExec: "app.launchURL(\"https://developer.adobe.com/console/servicesandapis\", true);",
+	nPos: 14
 });
 ////////////////////////////////////////////////////////////////////////
 app.addMenuItem({
