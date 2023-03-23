@@ -285,14 +285,14 @@ app.addMenuItem({
 	nPos: 4
 });
 app.addMenuItem({
-	cName: "OpenURL5",
+	cName: "SharedURL5",
 	cUser: "GoogleDrive",
 	cParent: "addHelpSubMenuSh",
 	cExec: "app.launchURL(\"https://drive.google.com/\", true);",
 	nPos: 5
 });
 app.addMenuItem({
-	cName: "OpenURL6",
+	cName: "SharedURL6",
 	cUser: "OneDrive",
 	cParent: "addHelpSubMenuSh",
 	cExec: "app.launchURL(\"https://onedrive.live.com/\", true);",
