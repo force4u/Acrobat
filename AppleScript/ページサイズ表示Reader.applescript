@@ -99,7 +99,7 @@ if ((item 1 of listTrimBoxSize) + (item 4 of listTrimBoxSize)) > 0 then
 	set strMes to strMes & "表示外の領域があります（Trimサイズ）\r" as text
 end if
 if ((item 1 of listCropBoxSize) + (item 4 of listCropBoxSize)) > 0 then
-	set strMes to strMes & "表示外の領域があります（Trimサイズ）\r" as text
+	set strMes to strMes & "表示外の領域があります（Cropサイズ）\r" as text
 end if
 
 #####ダイアログを前面に
