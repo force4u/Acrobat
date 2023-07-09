@@ -123,8 +123,8 @@ try:
 #############左側ページのリサイズと回転
 			if (numRotationL == 0):
 				numNewRotationL = 0
-				numTXL = 0 
-				numTYL = 0 
+				numTXL = 0 - numCropXL
+				numTYL = 0 - numCropYL
 			elif (numRotationL == 90):
 				numNewRotationL = 270
 				numTXL = 0 - numCropYL
@@ -141,64 +141,64 @@ try:
 			print("############")
 			objOption = Transformation().rotate(numNewRotationL).translate(tx=numTXL, ty=numTYL)
 			objPageL.add_transformation(objOption,True)
-			objPageL.mediabox = RectangleObject((0,0,numNewW,numNewH))
-			objPageL.cropbox = RectangleObject((0,0,numNewW,numNewH))
-			objPageL.trimbox = RectangleObject((0,0,numNewW,numNewH))
-			objPageL.bleedbox = RectangleObject((0,0,numNewW,numNewH))
-			objPageL.artbox = RectangleObject((0,0,numNewW,numNewH))
+			objPageL.mediabox = RectangleObject((0,0,numWL,numNewH))
+			objPageL.cropbox = RectangleObject((0,0,numWL,numNewH))
+			objPageL.trimbox = RectangleObject((0,0,numWL,numNewH))
+			objPageL.bleedbox = RectangleObject((0,0,numWL,numNewH))
+			objPageL.artbox = RectangleObject((0,0,numWL,numNewH))
 			objNewPage.merge_page(objPageL,False)
-#############中央ページのリサイズと回転
-			if (numRotationC == 0):
-				numNewRotationC = 0
-				numTXC = numWL
-				numTYC = 0 
-			elif (numRotationC == 90):
-				numNewRotationC = 270
-				numTXC = numWL
-				numTYC = numHC + numCropXC
-			elif (numRotationC == 180):
-				numNewRotationC = 180
-				numTXC = numWL + numWC
-				numTYC = numHC + numCropYC
-			elif (numRotationC == 270):
-				numNewRotationC = 90
-				numTXC = numWL + numWC
-				numTYC = 0 - numCropXC
-			print("numTXL:" , numTXL , "numTXC:" , numTXC)
-			objOption = Transformation().rotate(numNewRotationC).translate(tx=(numTXC), ty=numTYC)
-			objPageC.add_transformation(objOption,True)
-			objPageC.mediabox = RectangleObject((0,0,numNewW,numNewH))
-			objPageC.cropbox = RectangleObject((0,0,numNewW,numNewH))
-			objPageC.trimbox = RectangleObject((0,0,numNewW,numNewH))
-			objPageC.bleedbox = RectangleObject((0,0,numNewW,numNewH))
-			objPageC.artbox = RectangleObject((0,0,numNewW,numNewH))
-			objNewPage.merge_page(objPageC,False)
 #############右側ページのリサイズと回転
 			if (numRotationR == 0):
 				numNewRotationR = 0
-				numTXR = numWL + numWC
-				numTYR = 0
+				numTXR = numWL + numWC  - numCropXR
+				numTYR = 0  - numCropYR
 			elif (numRotationR == 90):
 				numNewRotationR = 270
-				numTXR = numWL + numWC
+				numTXR = numWL + numWC - numCropYR
 				numTYR = numHR + numCropXR
 			elif (numRotationR == 180):
 				numNewRotationR = 180
-				numTXR = numWL + numWC + numWR
+				numTXR = numNewW + numCropXR
 				numTYR = numHR + numCropYR
 			elif (numRotationR == 270):
 				numNewRotationR = 90
-				numTXR = numWL + numWC + numWR
+				numTXR = numNewW + numCropYR
 				numTYR = 0 - numCropXR
 			print("numTXR:" , numTXR , "numTYR:" , numTYR)
 			objOption = Transformation().rotate(numNewRotationR).translate(tx=numTXR, ty=numTYR)
 			objPageR.add_transformation(objOption,True)
-			objPageR.mediabox = RectangleObject((0,0,numNewW,numNewH))
-			objPageR.cropbox = RectangleObject((0,0,numNewW,numNewH))
-			objPageR.trimbox = RectangleObject((0,0,numNewW,numNewH))
-			objPageR.bleedbox = RectangleObject((0,0,numNewW,numNewH))
-			objPageR.artbox = RectangleObject((0,0,numNewW,numNewH))
+			objPageR.mediabox = RectangleObject((numNewW,0,numWR,numNewH))
+			objPageR.cropbox = RectangleObject((numNewW,0,numWR,numNewH))
+			objPageR.trimbox = RectangleObject((numNewW,0,numWR,numNewH))
+			objPageR.bleedbox = RectangleObject((numNewW,0,numWR,numNewH))
+			objPageR.artbox = RectangleObject((numNewW,0,numWR,numNewH))
 			objNewPage.merge_page(objPageR,True)
+			#############中央ページのリサイズと回転
+			if (numRotationC == 0):
+				numNewRotationC = 0
+				numTXC = numWL - numCropXC
+				numTYC = 0  - numCropYC
+			elif (numRotationC == 90):
+				numNewRotationC = 270
+				numTXC = numWL - numCropYC
+				numTYC = numHC + numCropXC
+			elif (numRotationC == 180):
+				numNewRotationC = 180
+				numTXC = numWL + numWC  + numCropXC
+				numTYC = numHC + numCropYC
+			elif (numRotationC == 270):
+				numNewRotationC = 90
+				numTXC = numWL + numWC + numCropYC
+				numTYC = 0 - numCropXC
+			print("numTXL:" , numTXL , "numTXC:" , numTXC)
+			objOption = Transformation().rotate(numNewRotationC).translate(tx=(numTXC), ty=numTYC)
+			objPageC.add_transformation(objOption,True)
+			objPageC.mediabox = RectangleObject((numWL + numWC,0,numWC,numNewH))
+			objPageC.cropbox = RectangleObject((numWL + numWC,0,numWC,numNewH))
+			objPageC.trimbox = RectangleObject((numWL + numWC,0,numWC,numNewH))
+			objPageC.bleedbox = RectangleObject((numWL + numWC,0,numWC,numNewH))
+			objPageC.artbox = RectangleObject((numWL + numWC,0,numWC,numNewH))
+			objNewPage.merge_page(objPageC,False)
 #########################################新規ページのサイズ確定
 			objNewPage.mediabox = RectangleObject((0,0,numNewW,numNewH))
 			objNewPage.cropbox = RectangleObject((0,0,numNewW,numNewH))
