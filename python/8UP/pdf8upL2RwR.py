@@ -13,7 +13,7 @@ strFilePath = str(argGetData[1])
 #テスト用
 #	strFilePath = "/path/to/pdf"
 
-strOutputPDFDocPath = strFilePath + ".3in1.pdf"
+strOutputPDFDocPath = strFilePath + ".8in1.pdf"
 try:
 	with open(strFilePath, 'rb') as objInputData:
 #########################################ライター初期化
