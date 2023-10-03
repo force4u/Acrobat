@@ -6,7 +6,7 @@
 #
 # com.cocolog-nifty.quicktimer.icefloe
 ----+----1----+----2----+-----3----+----4----+----5----+----6----+----7
-##©•ªŠÂ‹«‚ªos12‚È‚Ì‚Å2.8‚É‚µ‚Ä‚¢‚é‚¾‚¯‚Å‚·
+##è‡ªåˆ†ç’°å¢ƒãŒos12ãªã®ã§2.8ã«ã—ã¦ã„ã‚‹ã ã‘ã§ã™
 use AppleScript version "2.8"
 use framework "Foundation"
 use framework "AppKit"
@@ -14,7 +14,7 @@ use framework "UniformTypeIdentifiers"
 use scripting additions
 property refMe : a reference to current application
 
-###æ‚èo‚·ƒo[ƒWƒ‡ƒ“‚ÌƒAƒbƒvƒf[ƒ^‚ÌURL
+###å–ã‚Šå‡ºã™ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã®ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ã®URL
 set strUTL to ("https://ardownload2.adobe.com/pub/adobe/reader/mac/AcrobatDC/2200320314/AcroRdrDCUpd2200320314_MUI.dmg") as text
 set strDMGFileName to "AcroRdrDCUpd2200320314_MUI.dmg" as text
 set strPKGFileName to ("AcroRdrDCUpd2200320314_MUI.pkg") as text
@@ -22,7 +22,7 @@ set strPKGFileName to ("AcroRdrDCUpd2200320314_MUI.pkg") as text
 set appFileManager to refMe's NSFileManager's defaultManager()
 
 ########################################
-###ƒ_ƒEƒ“ƒ[ƒhƒtƒ@ƒCƒ‹‚ğ•Û‘¶‚·‚é‹N“®‚Éíœ‚³‚ê‚é€–Ú
+###ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ä¿å­˜ã™ã‚‹èµ·å‹•æ™‚ã«å‰Šé™¤ã•ã‚Œã‚‹é …ç›®
 set appFileManager to refMe's NSFileManager's defaultManager()
 set ocidTempDirURL to appFileManager's temporaryDirectory()
 set ocidUUID to refMe's NSUUID's alloc()'s init()
@@ -35,104 +35,104 @@ ocidAttrDict's setValue:(511) forKey:(refMe's NSFilePosixPermissions)
 set listBoolMakeDir to appFileManager's createDirectoryAtURL:(ocidSaveDirPathURL) withIntermediateDirectories:true attributes:(ocidAttrDict) |error|:(reference)
 
 ########################################
-###ƒ_ƒEƒ“ƒ[ƒh
-##•Û‘¶ƒpƒX
+###ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰
+##ä¿å­˜ãƒ‘ã‚¹
 set ocidSaveDMGPathURL to ocidSaveDirPathURL's URLByAppendingPathComponent:(strDMGFileName) isDirectory:false
 set strSaveDMGPathURL to (ocidSaveDMGPathURL's |path|()) as text
-###ƒ_ƒEƒ“ƒ[ƒhURL
-###ƒRƒ}ƒ“ƒhÀs
-set strCommandText to ("/usr/bin/curl -L -o €"" & strSaveDMGPathURL & "€" €"" & strUTL & "€" --connect-timeout 20") as text
+###ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰URL
+###ã‚³ãƒãƒ³ãƒ‰å®Ÿè¡Œ
+set strCommandText to ("/usr/bin/curl -L -o \"" & strSaveDMGPathURL & "\" \"" & strUTL & "\" --connect-timeout 20") as text
 do shell script strCommandText
 
 ########################################
-###DMGƒ}ƒEƒ“ƒg
-###ƒ}ƒEƒ“ƒgƒ|ƒCƒ“ƒg
+###DMGãƒã‚¦ãƒ³ãƒˆ
+###ãƒã‚¦ãƒ³ãƒˆãƒã‚¤ãƒ³ãƒˆ
 set ocidMountPointPathURL to ocidSaveDirPathURL's URLByAppendingPathComponent:("MountPoint/DC/") isDirectory:true
 set listBoolMakeDir to appFileManager's createDirectoryAtURL:(ocidMountPointPathURL) withIntermediateDirectories:true attributes:(ocidAttrDict) |error|:(reference)
 set strMountPointPathURL to (ocidMountPointPathURL's |path|()) as text
-###ƒRƒ}ƒ“ƒhÀs
-set strCommandText to ("/usr/bin/hdiutil attach  €"" & strSaveDMGPathURL & "€" -noverify -nobrowse -noautoopen -mountpoint €"" & strMountPointPathURL & "€"") as text
+###ã‚³ãƒãƒ³ãƒ‰å®Ÿè¡Œ
+set strCommandText to ("/usr/bin/hdiutil attach  \"" & strSaveDMGPathURL & "\" -noverify -nobrowse -noautoopen -mountpoint \"" & strMountPointPathURL & "\"") as text
 do shell script strCommandText
 
 ########################################
-###ƒ}ƒEƒ“ƒg‚³‚ê‚½ƒ{ƒŠƒ…[ƒ€‚©‚çPKG‚ğ‰ğ“€
+###ãƒã‚¦ãƒ³ãƒˆã•ã‚ŒãŸãƒœãƒªãƒ¥ãƒ¼ãƒ ã‹ã‚‰PKGã‚’è§£å‡
 ###PKGURL
 set ocidPkgPathURL to ocidMountPointPathURL's URLByAppendingPathComponent:(strPKGFileName) isDirectory:false
 set strPkgPath to (ocidPkgPathURL's |path|()) as text
-###pkg‚Ì“WŠJæ
+###pkgã®å±•é–‹å…ˆ
 set ocidExpandDirPathURL to ocidSaveDirPathURL's URLByAppendingPathComponent:("Expand") isDirectory:true
 set listBoolMakeDir to appFileManager's createDirectoryAtURL:(ocidExpandDirPathURL) withIntermediateDirectories:true attributes:(ocidAttrDict) |error|:(reference)
 set ocidExpandPKGPathURL to ocidSaveDirPathURL's URLByAppendingPathComponent:("Expand/Expand.pkg") isDirectory:true
 set strExpandPKGPath to (ocidExpandPKGPathURL's |path|()) as text
-####ƒRƒ}ƒ“ƒhÀs
-set strComandText to "/usr/sbin/pkgutil  --expand  €"" & strPkgPath & "€" €"" & strExpandPKGPath & "€"" as text
+####ã‚³ãƒãƒ³ãƒ‰å®Ÿè¡Œ
+set strComandText to "/usr/sbin/pkgutil  --expand  \"" & strPkgPath & "\" \"" & strExpandPKGPath & "\"" as text
 do shell script strComandText
 
-####‰ğ“€‚ªI‚í‚Á‚½‚çDMG‚Ìƒ}ƒEƒ“ƒg‰ğœ
-set strComandText to "/usr/bin/hdiutil detach €"" & strMountPointPathURL & "€" -force" as text
+####è§£å‡ãŒçµ‚ã‚ã£ãŸã‚‰DMGã®ãƒã‚¦ãƒ³ãƒˆè§£é™¤
+set strComandText to "/usr/bin/hdiutil detach \"" & strMountPointPathURL & "\" -force" as text
 do shell script strComandText
 
 
 ########################################
-###Payload‚ğ‰ğ“€‚µ‚È‚ª‚ç•¡»
-###Payload‚ÌƒpƒX
+###Payloadã‚’è§£å‡ã—ãªãŒã‚‰è¤‡è£½
+###Payloadã®ãƒ‘ã‚¹
 set ocidPayloadPathURL to ocidExpandPKGPathURL's URLByAppendingPathComponent:("payload.pkg/Payload") isDirectory:true
 set strPayloadPath to (ocidPayloadPathURL's |path|()) as text
-###‰ğ“€æ
+###è§£å‡å…ˆ
 set ocidExtractDirPathURL to ocidSaveDirPathURL's URLByAppendingPathComponent:("Extract") isDirectory:true
 set listBoolMakeDir to appFileManager's createDirectoryAtURL:(ocidExtractDirPathURL) withIntermediateDirectories:true attributes:(ocidAttrDict) |error|:(reference)
 set strExtractDirPath to (ocidExtractDirPathURL's |path|()) as text
 
-set strComandText to ("/usr/bin/ditto  -xz   €"" & strPayloadPath & "€"   €"" & strExtractDirPath & "€"") as text
+set strComandText to ("/usr/bin/ditto  -xz   \"" & strPayloadPath & "\"   \"" & strExtractDirPath & "\"") as text
 do shell script strComandText
 
 ########################################
-###7zƒtƒ@ƒCƒ‹‚ğ‰ğ“€
-###ƒRƒ}ƒ“ƒh‚Ö‚ÌƒpƒX
+###7zãƒ•ã‚¡ã‚¤ãƒ«ã‚’è§£å‡
+###ã‚³ãƒãƒ³ãƒ‰ã¸ã®ãƒ‘ã‚¹
 set ocid7zzPathURL to ocidExpandPKGPathURL's URLByAppendingPathComponent:("acropython3.pkg/Scripts/Tools/7za") isDirectory:true
 set str7zzPath to (ocid7zzPathURL's |path|()) as text
-###‰ğ“€‚·‚éƒtƒ@ƒCƒ‹
+###è§£å‡ã™ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«
 set ocid7zArcPathURL to ocidExtractDirPathURL's URLByAppendingPathComponent:("MUI.7z") isDirectory:true
 set str7zArcPat to (ocid7zArcPathURL's |path|()) as text
 delay 2
-set strComandText to ("€"" & str7zzPath & "€" x €"" & str7zArcPat & "€" -o€"" & strExtractDirPath & "€" -y -slt") as text
+set strComandText to ("\"" & str7zzPath & "\" x \"" & str7zArcPat & "\" -o\"" & strExtractDirPath & "\" -y -slt") as text
 do shell script strComandText
 
 ########################################
-###RdrServicesUpdater‚ğsudo‚ÅÀs
+###RdrServicesUpdaterã‚’sudoã§å®Ÿè¡Œ
 set ocidPayloadPathURL to ocidExpandPKGPathURL's URLByAppendingPathComponent:("RdrServicesUpdater.pkg/Payload") isDirectory:true
 set strPayloadPath to (ocidPayloadPathURL's |path|()) as text
-###‰ğ“€æ
+###è§£å‡å…ˆ
 set ocidRdrServicesUpdaterExtractDirPathURL to ocidSaveDirPathURL's URLByAppendingPathComponent:("RdrServicesUpdater") isDirectory:true
 set listBoolMakeDir to appFileManager's createDirectoryAtURL:(ocidRdrServicesUpdaterExtractDirPathURL) withIntermediateDirectories:true attributes:(ocidAttrDict) |error|:(reference)
 set strServicesUpdaterExtractDirPath to (ocidRdrServicesUpdaterExtractDirPathURL's |path|()) as text
 
-set strComandText to ("/usr/bin/ditto  -xz   €"" & strPayloadPath & "€"   €"" & strServicesUpdaterExtractDirPath & "€"") as text
+set strComandText to ("/usr/bin/ditto  -xz   \"" & strPayloadPath & "\"   \"" & strServicesUpdaterExtractDirPath & "\"") as text
 do shell script strComandText
 
 set ocidServicesUpdaterPathURL to ocidSaveDirPathURL's URLByAppendingPathComponent:("RdrServicesUpdater/RdrServicesUpdater.app/Contents/MacOS/RdrServicesUpdater") isDirectory:true
 set strServicesUpdaterPath to (ocidServicesUpdaterPathURL's |path|()) as text
 
 
-set strComandText to ("/usr/bin/sudo €"" & strServicesUpdaterPath & "€"") as text
+set strComandText to ("/usr/bin/sudo \"" & strServicesUpdaterPath & "\"") as text
 
 do shell script strComandText with administrator privileges
 
 ########################################
-###‰ğ“€‚³‚ê‚½ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚ÌˆÚ“®
+###è§£å‡ã•ã‚ŒãŸã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã®ç§»å‹•
 set ocidAppPathURL to ocidExtractDirPathURL's URLByAppendingPathComponent:("MUI/Application/Adobe Acrobat Reader DC.app") isDirectory:true
-###ƒ_ƒEƒ“ƒ[ƒhƒfƒBƒŒƒNƒgƒŠ‚ÉˆÚ“®
+###ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã«ç§»å‹•
 set ocidURLsArray to (appFileManager's URLsForDirectory:(refMe's NSDownloadsDirectory) inDomains:(refMe's NSUserDomainMask))
 set ocidDownloadsDirPathURL to ocidURLsArray's firstObject()
 set ocidMoveAppPathURL to ocidDownloadsDirPathURL's URLByAppendingPathComponent:("Adobe Acrobat Reader DC.app") isDirectory:true
 ####
 set lisrDone to appFileManager's moveItemAtURL:(ocidAppPathURL) toURL:(ocidMoveAppPathURL) |error|:(reference)
 
-##•\¦
+##è¡¨ç¤º
 set appSharedWorkspace to refMe's NSWorkspace's sharedWorkspace()
 set boolDone to appSharedWorkspace's selectFile:(ocidMoveAppPathURL's |path|()) inFileViewerRootedAtPath:(ocidDownloadsDirPathURL's |path|())
-###Œ‹‰Ê
+###çµæœ
 if boolDone is false then
-	return "ƒGƒ‰[‚µ‚Ü‚µ‚½"
+	return "ã‚¨ãƒ©ãƒ¼ã—ã¾ã—ãŸ"
 end if
 
