@@ -17,7 +17,7 @@ set strBundleID to "com.adobe.Reader"
 tell application id "com.adobe.Reader"
 	tell front window to activate
 	try
-		execute menu item "Accessibility" of menu "Acrobat" of application "Adobe Acrobat Reader DC"
+		execute menu item "Accessibility" of menu "Apple" of application "Adobe Acrobat Reader DC"
 	on error
 		do script ("app.execMenuItem(\"Accessibility:Wizard\");")
 	end try

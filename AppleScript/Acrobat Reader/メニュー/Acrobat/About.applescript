@@ -17,7 +17,7 @@ set strBundleID to "com.adobe.Reader"
 tell application id "com.adobe.Reader"
 	tell front window to activate
 	try
-		execute menu item "About" of menu "Acrobat Reader" of application "Adobe Acrobat Reader DC"
+		execute menu item "About" of menu "Apple" of application "Adobe Acrobat Reader DC"
 	on error
 		do script ("app.execMenuItem(\"About\");")
 	end try
