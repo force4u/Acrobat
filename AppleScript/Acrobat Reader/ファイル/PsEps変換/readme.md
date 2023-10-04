@@ -1,0 +1,1 @@
+macOS14でpostscriptファイルのサポートが終了しました
