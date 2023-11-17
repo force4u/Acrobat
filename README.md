@@ -1,2 +1,2 @@
 # Acrobat
-AcrobatJs
+Acrobat関連のスニペット
