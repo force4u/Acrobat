@@ -74,6 +74,57 @@ if [ "$BOOL_VALUE" = "true" ]; then
 /usr/libexec/PlistBuddy -c "Set:DC:FeatureLockDown:EnableAV2Enterprise bool false" "$STR_PLIST_PATH"
 /bin/echo "EnableAV2Enterprise 設定を変更しました"
 fi
+
+###AV2FontMigrated
+BOOL_VALUE=$(/usr/libexec/PlistBuddy -c "Print:DC:Comments:AV2FontMigrated:1" "$STR_PLIST_PATH")
+/bin/echo "AV2FontMigrated 現在の設定は: $BOOL_VALUE"
+if [ "$BOOL_VALUE" = "true" ]; then
+##設定をFALSEに
+/usr/libexec/PlistBuddy -c "Set:DC:Comments:AV2FontMigrated:1 bool false" "$STR_PLIST_PATH"
+/bin/echo "AV2FontMigrated 設定を変更しました"
+fi
+
+
+###AV2ViewerAllToolsState
+BOOL_VALUE=$(/usr/libexec/PlistBuddy -c "Print:DC:AVGeneral:AV2ViewerAllToolsState:1" "$STR_PLIST_PATH")
+/bin/echo "AV2ViewerAllToolsState 現在の設定は: $BOOL_VALUE"
+if [ "$BOOL_VALUE" = "4" ]; then
+##設定をFALSEに
+/usr/libexec/PlistBuddy -c "Set:DC:AVGeneral:AV2ViewerAllToolsState:0 0" "$STR_PLIST_PATH"
+/bin/echo "AV2ViewerAllToolsState 設定を変更しました"
+fi
+
+
+###AV2ToolDiscoveryWalkthrough
+BOOL_VALUE=$(/usr/libexec/PlistBuddy -c "Print :DC:AVGeneral:AV2ToolDiscoveryWalkthrough:0" "$STR_PLIST_PATH")
+/bin/echo "AV2ToolDiscoveryWalkthrough 現在の設定は: $BOOL_VALUE"
+if [ "$BOOL_VALUE" = "8" ]; then
+##設定をFALSEに
+/usr/libexec/PlistBuddy -c "Set :DC:AVGeneral:AV2ToolDiscoveryWalkthrough:0  0" "$STR_PLIST_PATH"
+/bin/echo "AV2ToolDiscoveryWalkthrough 設定を変更しました"
+fi
+
+
+###FormatTextInRCMExpAV2
+BOOL_VALUE=$(/usr/libexec/PlistBuddy -c "Print:DC:IPMExperiments:FormatTextInRCMExpAV2:0" "$STR_PLIST_PATH")
+/bin/echo "FormatTextInRCMExpAV2 現在の設定は: $BOOL_VALUE"
+if [ "$BOOL_VALUE" = "8" ]; then
+##設定をFALSEに
+/usr/libexec/PlistBuddy -c "Set:DC:IPMExperiments:FormatTextInRCMExpAV2:0  0" "$STR_PLIST_PATH"
+/bin/echo "FormatTextInRCMExpAV2 設定を変更しました"
+fi
+
+###EditScannedIntentAV2
+BOOL_VALUE=$(/usr/libexec/PlistBuddy -c "Print:DC:IPMExperiments:EditScannedIntentAV2:0" "$STR_PLIST_PATH")
+/bin/echo "EditScannedIntentAV2 現在の設定は: $BOOL_VALUE"
+if [ "$BOOL_VALUE" = "8" ]; then
+##設定をFALSEに
+/usr/libexec/PlistBuddy -c "Set :DC:IPMExperiments:EditScannedIntentAV2:0 0" "$STR_PLIST_PATH"
+/bin/echo "EditScannedIntentAV2 設定を変更しました"
+fi
+
+
+
 ##保存
 /usr/libexec/PlistBuddy -c "Save" "$STR_PLIST_PATH"
 

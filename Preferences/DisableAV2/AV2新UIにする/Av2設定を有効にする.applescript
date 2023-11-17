@@ -13,8 +13,24 @@ Adobe Acrobat　Acrobat Reader
 use AppleScript version "2.8"
 use framework "Foundation"
 use framework "AppKit"
+use framework "UniformTypeIdentifiers"
 use scripting additions
 property refMe : a reference to current application
+
+set listBundleID to {"com.adobe.Acrobat.Pro", "com.adobe.Reader"} as list
+
+###アプリケーションが起動しているか
+set ocidRunningApplication to refMe's NSRunningApplication
+repeat with itemBundleID in listBundleID
+	set ocidAppArray to (ocidRunningApplication's runningApplicationsWithBundleIdentifier:(itemBundleID))
+	set itemAppArray to ocidAppArray's firstObject()
+	if itemAppArray is (missing value) then
+		log "アプリケーションが起動していませんので処理します"
+	else
+		display alert "エラー:アプリケーションを終了させてください" buttons {"OK", "キャンセル"} default button "OK" as informational giving up after 2
+		return "エラー:アプリケーションが起動しています終了させてから実行してください"
+	end if
+end repeat
 
 ###BOOL値比較用
 set ocidTrue to (refMe's NSNumber's numberWithBool:true)
