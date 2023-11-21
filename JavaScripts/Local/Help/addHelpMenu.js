@@ -1,7 +1,5 @@
 ////////////////////////////////////////////////
-//
-//
-//
+//	Acrobat Help Menu
 //
 //   com.cocolog-nifty.quicktimer.icefloe
 ////////////////////////////////////////////////
@@ -127,9 +125,6 @@ app.addMenuItem({
 	cExec: "app.launchURL(\"https://community.adobe.com/t5/acrobat-reader-acrobat-dc-for-mobile%E3%83%95%E3%82%A9%E3%83%BC%E3%83%A9%E3%83%A0/ct-p/ct-acrobat-reader-and-reader-mobile-jp?page=1&sort=latest_replies&lang=all&tabid=all&profile.language=ja#:~:text=Acrobat%20Reader%20/%20Acrobat%20DC%20for%20Mobile%E3%83%95%E3%82%A9%E3%83%BC%E3%83%A9%E3%83%A0\", true);",
 	nPos: 12
 });
-
-
-
 ////////////////////////////////////////////
 app.addMenuItem({
 	cName: "OpenURL1",
@@ -167,11 +162,11 @@ app.addMenuItem({
 	nPos: 12
 });
 app.addMenuItem({
-	cName: "OpenURL14",
+	cName: "OpenURL13",
 	cUser: "AdminConsole",
 	cParent: "addHelpSubMenuUrl",
 	cExec: "app.launchURL(\"https://adminconsole.adobe.com/\", true);",
-	nPos: 14
+	nPos: 13
 });
 app.addMenuItem({
 	cName: "appHelpOpenTrustedMenu",
@@ -182,15 +177,33 @@ app.addMenuItem({
 	cExec: "appHelpOpenTrustedMenu();",
 	cEnable: "event.rc = true",
 	cMarked: "event.rc = false",
-	nPos: 13,
+	nPos: 14
 });
 app.addMenuItem({
 	cName: "OpenURL15",
 	cUser: "Adobe Dev SDK",
 	cParent: "addHelpSubMenuUrl",
 	cExec: "app.launchURL(\"https://developer.adobe.com/console/servicesandapis\", true);",
-	nPos: 14
+	nPos: 15
 });
+
+app.addMenuItem({
+	cName: "OpenURL18",
+	cUser: "PrefRef Mac",
+	cParent: "addHelpSubMenuUrl",
+	cExec: "app.launchURL(\"https://www.adobe.com/devnet-docs/acrobatetk/tools/PrefRef/Macintosh/index.html\", true);",
+	nPos: 18
+});
+
+app.addMenuItem({
+	cName: "OpenURL19",
+	cUser: "PrefRef Win",
+	cParent: "addHelpSubMenuUrl",
+	cExec: "app.launchURL(\"https://www.adobe.com/devnet-docs/acrobatetk/tools/PrefRef/Windows/index.html\", true);",
+	nPos: 19
+});
+
+
 ////////////////////////////////////////////////////////////////////////
 app.addMenuItem({
 	cName: "appHelpSubPrefOpen",
@@ -203,7 +216,6 @@ app.addMenuItem({
 	cMarked: "event.rc = false",
 	nPos: 22,
 });
-
 app.addMenuItem({
 	cName: "OpenURL23",
 	cUser: "JavaScripts フォルダを開きます",
@@ -211,10 +223,9 @@ app.addMenuItem({
 	cExec: "appGetJavascriptPath()",
 	nPos: 23
 });
-
 function appGetJavascriptPath() {
 	try {
-		var strUserJavascriptDir = app.getPath("user","javascript");
+		var strUserJavascriptDir = app.getPath("user", "javascript");
 		var strFilePath = strUserJavascriptDir.replace(/^.*Users/, '/Users');
 		app.launchURL("file://" + strFilePath + "", true);
 	} catch (error) {
@@ -222,7 +233,6 @@ function appGetJavascriptPath() {
 		return;
 	}
 }
-
 app.addMenuItem({
 	cName: "OpenURL24",
 	cUser: "Stamps フォルダを開きます",
@@ -230,10 +240,9 @@ app.addMenuItem({
 	cExec: "appGetStampsPath()",
 	nPos: 23
 });
-
 function appGetStampsPath() {
 	try {
-		var strUserStampstDir = app.getPath("user","stamps");
+		var strUserStampstDir = app.getPath("user", "stamps");
 		var strFilePath = strUserStampstDir.replace(/^.*Users/, '/Users');
 		app.launchURL("file://" + strFilePath + "", true);
 	} catch (error) {
@@ -241,8 +250,6 @@ function appGetStampsPath() {
 		return;
 	}
 }
-
-
 
 app.addMenuItem({
 	cName: "appHelpOpenGeneralInfo",
@@ -334,9 +341,9 @@ function appHelpOpenTrustedMenu() {
 	try {
 		var cResponse = app.response({
 			cQuestion: "開きたいPDFのURLを入力",
-			cTitle: "よろしければOKしてください", 
+			cTitle: "よろしければOKしてください",
 			cDefault: "https://opensource.adobe.com/dc-acrobat-sdk-docs/acrobatsdk/pdfs/acrobatsdk_jsdevguide.pdf#2",
-			bPassword:false,
+			bPassword: false,
 			cLabel: "Response:"
 		});
 		if (cResponse == null) {
