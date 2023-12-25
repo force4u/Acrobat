@@ -169,7 +169,7 @@ to doGetPasteboard(argDefaultText)
 	if argDefaultText = (missing value) then
 		set strMesText to "" as text
 	else
-		set strMesText to argMesText as text
+		set strMesText to argDefaultText as text
 	end if
 	## クリップボードの中身取り出し
 	set ocidPasteboard to refMe's NSPasteboard's generalPasteboard()
