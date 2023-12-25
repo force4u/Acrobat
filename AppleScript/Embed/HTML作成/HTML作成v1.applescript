@@ -165,10 +165,11 @@ set listDone to ocidReadHTML's writeToURL:(ocidSaveFilePathURL) atomically:(true
 ## クリップボードテキスト取出
 ####################
 to doGetPasteboard(argDefaultText)
+	###渡された値が無い場合
 	if argMesText = (missing value) then
-		set strMesText to argMesText as text
-	else
 		set strMesText to "" as text
+	else
+		set strMesText to argMesText as text
 	end if
 	## クリップボードの中身取り出し
 	set ocidPasteboard to refMe's NSPasteboard's generalPasteboard()
@@ -184,9 +185,11 @@ to doGetPasteboard(argDefaultText)
 	else
 		set boolContain to ocidPastBoardTypeArray's containsObject:"NSStringPboardType"
 		if boolContain = true then
+			###書式ありの場合
 			set ocidPasteboardString to ocidPasteboard's readObjectsForClasses:({refMe's NSString}) options:(missing value)
 			set strPasteboardString to ocidPasteboardString as text
 		else
+			###取得できなかった場合はメッセージを返す
 			set strPasteboardString to (strMesText) as text
 		end if
 	end if
