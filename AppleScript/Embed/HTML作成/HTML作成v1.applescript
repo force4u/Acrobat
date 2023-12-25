@@ -166,7 +166,7 @@ set listDone to ocidReadHTML's writeToURL:(ocidSaveFilePathURL) atomically:(true
 ####################
 to doGetPasteboard(argDefaultText)
 	###渡された値が無い場合
-	if argMesText = (missing value) then
+	if argDefaultText = (missing value) then
 		set strMesText to "" as text
 	else
 		set strMesText to argMesText as text
