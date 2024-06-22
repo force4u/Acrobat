@@ -47,7 +47,7 @@ for ITEM_DITEM in "${LIST_DITEM[@]}"; do
   #ID
   STR_ID=$(/bin/echo "$ITEM_DITEM" | /usr/bin/xmllint --xpath 'string(/dItem/@id)' -)
   #URLだけ必要な場合はここを出力しなければいい
-  /bin/echo "STR_ID : " "$STR_ID" >>"$STR_TEXT_FILE_PATH"
+  /bin/echo "ID : " "$STR_ID" >>"$STR_TEXT_FILE_PATH"
   #httpURLBase
   STR_URLBASE=$(/bin/echo "$ITEM_DITEM" | /usr/bin/xmllint --xpath 'string(/dItem/@httpURLBase)' -)
   /bin/echo "STR_URLBASE : " "$STR_URLBASE"
