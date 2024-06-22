@@ -1,16 +1,17 @@
 #!/bin/bash
 #com.cocolog-nifty.quicktimer.icefloe
-# SCA(SingleClientApp)　Unified App版
-# IDに MINIがつくのはREADER版
-# FULLは新規または上書きインストール用
+# 従来版の　製品版Acrobat用です
+# SCA版 と　従来版のReader用は別です
+# <https://quicktimer.cocolog-nifty.com/icefloe/2024/06/post-04a154.html>
+#IDにFullが付くのはは新規インストールや上書きインストール用です
 #################################################
 #ダウンロード先を確保
 LOCAL_TMP_DIR=$(/usr/bin/mktemp -d)
 /bin/echo "TMPDIR：" "$LOCAL_TMP_DIR"
 #保存先のパス
-STR_PKG_FILE_PATH="${LOCAL_TMP_DIR}/AcrobatSCAManifest.pkg"
+STR_PKG_FILE_PATH="${LOCAL_TMP_DIR}/ReaderManifest.pkg"
 #ダウンロードURL
-STR_URL="https://armmf.adobe.com/arm-manifests/mac/AcrobatDC/acrobatSCA/AcrobatSCAManifest.arm"
+STR_URL="https://armmf.adobe.com/arm-manifests/mac/AcrobatDC/reader/ReaderManifest.arm"
 #ダウンロード
 if ! /usr/bin/curl -L -o "$STR_PKG_FILE_PATH" "$STR_URL" --connect-timeout 20; then
   /bin/echo "ファイルのダウンロードに失敗しました HTTP1.1で再トライします"
@@ -21,7 +22,7 @@ if ! /usr/bin/curl -L -o "$STR_PKG_FILE_PATH" "$STR_URL" --connect-timeout 20; t
 fi
 #################################################
 #解凍先パス
-STR_EXPAND_DIR_PATH="${LOCAL_TMP_DIR}/AcrobatSCAManifest"
+STR_EXPAND_DIR_PATH="${LOCAL_TMP_DIR}/ReaderManifest"
 #解凍
 /usr/sbin/pkgutil --expand-full "$STR_PKG_FILE_PATH" "$STR_EXPAND_DIR_PATH"
 
@@ -29,9 +30,9 @@ STR_EXPAND_DIR_PATH="${LOCAL_TMP_DIR}/AcrobatSCAManifest"
 #出力用のテキスト
 STR_OUTPUT_TEXT=""
 #テキスト保存先
-STR_TEXT_FILE_PATH="${LOCAL_TMP_DIR}/AcrobatSCAManifest/AcrobatSCAManifest.txt"
+STR_TEXT_FILE_PATH="${LOCAL_TMP_DIR}/ReaderManifest/ReaderManifest.txt"
 #XML保存先
-STR_XML_FILE_PATH="${LOCAL_TMP_DIR}/AcrobatSCAManifest/ASSET/AcrobatSCAManifest.xml"
+STR_XML_FILE_PATH="${LOCAL_TMP_DIR}/ReaderManifest/ASSET/ReaderManifest.xml"
 #XML読み込み
 XML_READ_DATA=$(/usr/bin/xmllint --format "$STR_XML_FILE_PATH")
 #XMLをdItemだけ読み込んで
