@@ -1,0 +1,3 @@
+Acrobatの各種アップデータのURLを取得するスクリプト
+Windows版
+アーカイブの解凍をUnarchiverに投げるタイプの簡易版
