@@ -3,4 +3,5 @@ Acrobat関連のスニペット
 
 
 SCA版判定
-![20240607-063142-1120x210-3](https://github.com/force4u/Acrobat/assets/11995768/5f0635d4-67af-4f6d-9702-f57162353dd6)
+![GVftQTHakAAjhBe](https://github.com/user-attachments/assets/be7a7ce4-28b9-493a-b7e2-2b2fff5ac758)
+
