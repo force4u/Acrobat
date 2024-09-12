@@ -1,6 +1,7 @@
 ////////////////////////////////////////////////
 //	Acrobat Help Menu
-//
+//　Mac用　Windowsでは使えません
+// 保存する時は文字コードをUTF-16で保存してください
 //   com.cocolog-nifty.quicktimer.icefloe
 ////////////////////////////////////////////////
 menuParent = "Help";
@@ -306,6 +307,18 @@ app.addMenuItem({
 	nPos: 6
 });
 ////////////////////////////////////////////////////////////////////////
+//
+app.addMenuItem({
+	cName: "appVersionCheckMenu",
+	cUser: "バージョンチェック",
+	cLabel: "バージョンチェック",
+	cTooltext: "バージョンチェック",
+	cParent: "addHelpSubMenuCon",
+	cExec: "doChkVersionChk();",
+	cEnable: "event.rc = true",
+	cMarked: "event.rc = false",
+	nPos: 3
+});
 app.addMenuItem({
 	cName: "appHelpSubPrintMenuList",
 	cUser: "メニューリスト出力",
@@ -329,6 +342,56 @@ app.addMenuItem({
 	cMarked: "event.rc = false",
 	nPos: 1
 });
+////////////////
+function doChkVersionChk() {
+	//console.clear();
+	console.show();
+
+	var strVersionText = "Adobe\xAE Acrobat\xAE " + app.viewerVersion + " " + app.viewerType + "\n";
+	strVersionText += "Variation: " + app.viewerVariation + "\n";
+	strVersionText += "Type: " + app.viewerType + "\n";
+	strVersionText += "Platform: " + app.platform + "\n";
+	strVersionText += "Language: " + app.language + "\n";
+	strVersionText += "PlugIns: " + app.numPlugIns + "\n";
+	var numCntPr = app.printerNames.length;
+	for (var i = 0; i < numCntPr; i++) {
+		strVersionText += "Printer: " + app.printerNames[i] + "\n";
+	}
+	console.println(strVersionText);
+
+	var docReport = new Report();
+	var strVerString = "Adobe\xAE Acrobat\xAE " + app.viewerVersion + " " + app.viewerType + "\n";
+	docReport.writeText(strVerString);
+	docReport.writeText("Variation: " + app.viewerVariation);
+	docReport.divide();
+	docReport.writeText(strVersionText);
+	docReport.divide();
+	try {
+		var strSetValue = identity.name;
+	} catch (e) {
+		var strSetValue = "Not configured";
+	}
+	docReport.writeText("Name: " + strSetValue);
+	try {
+		var strSetValue = identity.loginName;
+	} catch (e) {
+		var strSetValue = "Not configured";
+	}
+	docReport.writeText("LoginName: " + strSetValue);
+	try {
+		var strSetValue = identity.email;
+	} catch (e) {
+		var strSetValue = "Not configured";
+	}
+	docReport.writeText("eMail: " + strSetValue);
+	try {
+		var strSetValue = identity.corporation;
+	} catch (e) {
+		var strSetValue = "Not configured";
+	}
+	docReport.writeText("Corporation: " + strSetValue);
+	docReport.open("バージョンレポート");
+};
 ////////////////////////////////////////////////////////////////////////
 appTrustedMenu = app.trustedFunction(
 	function (argMenuName) {
@@ -342,7 +405,7 @@ function appHelpOpenTrustedMenu() {
 		var cResponse = app.response({
 			cQuestion: "開きたいPDFのURLを入力",
 			cTitle: "よろしければOKしてください",
-			cDefault: "https://opensource.adobe.com/dc-acrobat-sdk-docs/acrobatsdk/pdfs/acrobatsdk_jsdevguide.pdf#2",
+			cDefault: "https://quicktimer.cocolog-nifty.com/icefloe/files/acrobatsdk_jsdevguide.pdf",
 			bPassword: false,
 			cLabel: "Response:"
 		});
@@ -399,25 +462,33 @@ function appHelpAddPrintList() {
 ////////////////////////////////////////////////////////////////
 function appHelpMenuList() {
 	console.show();
+	var docReport = new Report();
 	////app.execMenuItem("CommentApp");
 	function FancyMenuList(m, nLevel) {
 		var s = "";
 		for (var i = 0; i < nLevel; i++) s += " ";
 		console.println(s + "+-" + m.cName);
+		docReport.writeText(s + "+-" + m.cName);
 		if (m.oChildren != null)
 			for (var i = 0; i < m.oChildren.length; i++)
 				FancyMenuList(m.oChildren[i], nLevel + 1);
 	}
 	var m = app.listMenuItems();
 	for (var i = 0; i < m.length; i++) FancyMenuList(m[i], 0);
-	console.println("##############\n")
-	var menuItems = app.listMenuItems()
+	console.println("##############\n");
+	docReport.divide();
+	var menuItems = app.listMenuItems();
 	for (var i in menuItems)
-		console.println(menuItems[i] + "\n")
+		console.println(menuItems[i] + "\n");
+	docReport.writeText(menuItems[i] + "\n");
 	console.println("##############\n")
-	var botItem = app.listToolbarButtons()
+	docReport.divide();
+	var botItem = app.listToolbarButtons();
 	for (var i in botItem)
-		console.println(botItem[i] + "\n")
-	console.println("\n##############\n" + botItem)
+		console.println(botItem[i] + "\n");
+	docReport.writeText(botItem[i] + "\n");
+	console.println("\n##############\n" + botItem);
+	docReport.divide();
+	docReport.open("メニュー項目一覧");
 }
 
