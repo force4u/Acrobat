@@ -1,7 +1,20 @@
 ////////////////////////////////////////////////
 //	Acrobat Help Menu
-//　Mac用　Windowsでは使えません
+//
 // 保存する時は文字コードをUTF-16で保存してください
+// macOSの場合は改行はLF UNIX
+// Windowsの場合は改行はCRLF win を指定してください
+// インストール先は
+//  macOSの場合は
+//  /Users/ユーザー名/Library/Application Support/Adobe/Acrobat/DC/JavaScripts
+// Windowsの場合は
+// 改行をCRLFにした上で
+//  32bit Windowsの場合
+//  C:\Program Files (x86)\Adobe\Acrobat DC\Acrobat\Javascripts
+//  64bit Windowsの場合
+//  C:\Program Files\Adobe\Acrobat DC\Acrobat\Javascripts
+//  20240913v4   回転チェックとバージョンチェックを追加
+//  20240915v4.1 Readerでエラーにならないように修正
 //   com.cocolog-nifty.quicktimer.icefloe
 ////////////////////////////////////////////////
 menuParent = "Help";
@@ -309,6 +322,17 @@ app.addMenuItem({
 ////////////////////////////////////////////////////////////////////////
 //
 app.addMenuItem({
+	cName: "appRotationCheckMenu",
+	cUser: "PDFページの回転チェック",
+	cLabel: "PDFページの回転チェック",
+	cTooltext: "PDFページの回転チェック",
+	cParent: "addHelpSubMenuCon",
+	cExec: "doRotationChk();",
+	cEnable: "event.rc = true",
+	cMarked: "event.rc = false",
+	nPos: 4
+});
+app.addMenuItem({
 	cName: "appVersionCheckMenu",
 	cUser: "バージョンチェック",
 	cLabel: "バージョンチェック",
@@ -343,9 +367,57 @@ app.addMenuItem({
 	nPos: 1
 });
 ////////////////
-function doChkVersionChk() {
-	//console.clear();
+function doRotationChk() {
 	console.show();
+	console.println("\n");
+	var numAllPage = this.numPages;
+	var strOutPut = "";
+	for (var nPage = 0; nPage < numAllPage; nPage++) {
+		var numPageRotation = this.getPageRotation(nPage);
+		var numPrintPageNo = (nPage + 1);
+		var strPrintPageNo = numPrintPageNo.toString();
+		var strLeadingZero = "000" + strPrintPageNo;
+		var strSetPage = strLeadingZero.slice(-4);
+		if (numPageRotation == 0) {
+			var strOutPut = strOutPut + ("ページ番号: " + strSetPage + "\t回転:   " + numPageRotation + "\t天地／上下\n");
+		}
+		else if (numPageRotation == 90) {
+			var strOutPut = strOutPut + ("ページ番号: " + strSetPage + "\t回転:  " + numPageRotation + "\t天地／右左\n");
+		}
+		else if (numPageRotation == 180) {
+			var strOutPut = strOutPut + ("ページ番号: " + strSetPage + "\t回転: " + numPageRotation + "\t天地／下上\n");
+		}
+		else if (numPageRotation == 270) {
+			var strOutPut = strOutPut + ("ページ番号: " + strSetPage + "\t回転: " + numPageRotation + "\t天地／左右\n");
+		}
+		else {
+			var strOutPut = strOutPut + ("エラーPDFのページ回転構造に問題があります\n");
+			var strOutPut = strOutPut + ("ページ番号: " + strSetPage + "\t回転: " + numPageRotation + "\n");
+		}
+	}
+	var rectCropBox = this.getPageBox("Crop", 0);
+	var CropBoxSizeHeight = rectCropBox[1] - rectCropBox[0] - 36;
+	var CropBoxSizeWidth = rectCropBox[2] - rectCropBox[3] - 36;
+	console.println(strOutPut);
+	this.addAnnot({ page: 0, type: "Text", print: false, point: [CropBoxSizeWidth, CropBoxSizeHeight], name: "PDFページの回転チェック", author: "PDFページの回転チェック", subject: "PDFページの回転チェック", contents: strOutPut, noteIcon: "Help" });
+	if (app.viewerType == "Exchange-Pro") {
+	var strFilePath = this.path;
+	var docReport = new Report();
+	var strVerString = "Adobe\xAE Acrobat\xAE PDFページの回転チェック\n";
+	docReport.writeText(strVerString);
+	docReport.writeText(strFilePath);
+	docReport.divide();
+	docReport.writeText(strOutPut);
+	docReport.divide();
+	docReport.open("PDFページの回転チェック");
+	}
+}
+
+////////////////
+function doChkVersionChk() {
+	console.show();
+	console.clear();
+	console.println("");
 
 	var strVersionText = "Adobe\xAE Acrobat\xAE " + app.viewerVersion + " " + app.viewerType + "\n";
 	strVersionText += "Variation: " + app.viewerVariation + "\n";
@@ -358,7 +430,7 @@ function doChkVersionChk() {
 		strVersionText += "Printer: " + app.printerNames[i] + "\n";
 	}
 	console.println(strVersionText);
-
+	if (app.viewerType == "Exchange-Pro") {
 	var docReport = new Report();
 	var strVerString = "Adobe\xAE Acrobat\xAE " + app.viewerVersion + " " + app.viewerType + "\n";
 	docReport.writeText(strVerString);
@@ -391,6 +463,7 @@ function doChkVersionChk() {
 	}
 	docReport.writeText("Corporation: " + strSetValue);
 	docReport.open("バージョンレポート");
+	}
 };
 ////////////////////////////////////////////////////////////////////////
 appTrustedMenu = app.trustedFunction(
@@ -462,13 +535,17 @@ function appHelpAddPrintList() {
 ////////////////////////////////////////////////////////////////
 function appHelpMenuList() {
 	console.show();
+	if (app.viewerType == "Exchange-Pro") {
 	var docReport = new Report();
+	}
 	////app.execMenuItem("CommentApp");
 	function FancyMenuList(m, nLevel) {
 		var s = "";
 		for (var i = 0; i < nLevel; i++) s += " ";
 		console.println(s + "+-" + m.cName);
+		if (app.viewerType == "Exchange-Pro") {
 		docReport.writeText(s + "+-" + m.cName);
+		}
 		if (m.oChildren != null)
 			for (var i = 0; i < m.oChildren.length; i++)
 				FancyMenuList(m.oChildren[i], nLevel + 1);
@@ -476,19 +553,29 @@ function appHelpMenuList() {
 	var m = app.listMenuItems();
 	for (var i = 0; i < m.length; i++) FancyMenuList(m[i], 0);
 	console.println("##############\n");
+	if (app.viewerType == "Exchange-Pro") {
 	docReport.divide();
+	}
 	var menuItems = app.listMenuItems();
 	for (var i in menuItems)
 		console.println(menuItems[i] + "\n");
+	if (app.viewerType == "Exchange-Pro") {
 	docReport.writeText(menuItems[i] + "\n");
+	}
 	console.println("##############\n")
+	if (app.viewerType == "Exchange-Pro") {
 	docReport.divide();
+	}
 	var botItem = app.listToolbarButtons();
 	for (var i in botItem)
 		console.println(botItem[i] + "\n");
+	if (app.viewerType == "Exchange-Pro") {
 	docReport.writeText(botItem[i] + "\n");
+	}
 	console.println("\n##############\n" + botItem);
+	if (app.viewerType == "Exchange-Pro") {
 	docReport.divide();
 	docReport.open("メニュー項目一覧");
+	}
 }
 
