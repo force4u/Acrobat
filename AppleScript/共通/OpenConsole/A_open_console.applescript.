@@ -1,0 +1,17 @@
+#!/usr/bin/env osascript
+use AppleScript version "2.8"
+use framework "Foundation"
+use scripting additions
+
+#FILEURL
+set strFileURL to ("https://gist.githubusercontent.com/force4u/5c872f5e34bf636e1c89dd0cfd9adacb/raw/52256b68877baa655dfcf71946028636c4ef2c90/open_console.js") as text
+set ocidURLString to current application's NSString's stringWithString:(strFileURL)
+set ocidURL to current application's NSURL's alloc()'s initWithString:(ocidURLString)
+#ReadFile
+set listReadStrings to current application's NSString's alloc()'s initWithContentsOfURL:(ocidURL) encoding:(current application's NSUTF8StringEncoding) |error|:(reference)
+set strReadJS to (item 1 of listReadStrings) as text
+
+tell application "Adobe Acrobat Reader"
+	activate
+	do script strReadJS
+end tell
