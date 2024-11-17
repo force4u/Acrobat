@@ -15,6 +15,7 @@
 //  C:\Program Files\Adobe\Acrobat DC\Acrobat\Javascripts
 //  20240913v4   回転チェックとバージョンチェックを追加
 //  20240915v4.1 Readerでエラーにならないように修正
+//  20241117 ビューステートにエラー制御を入れた
 //   com.cocolog-nifty.quicktimer.icefloe
 ////////////////////////////////////////////////
 menuParent = "Help";
@@ -69,50 +70,50 @@ app.addMenuItem({
 	cName: "OpenURL3",
 	cUser: "■Document Cloud",
 	cParent: "addHelpSubMenuAdobe",
-	cExec: "app.launchURL(\"https://documentcloud.adobe.com/\", true);",
-	nPos: 3
+	cExec: "app.launchURL(\"https://acrobat.adobe.com/link/documents/files/\", true);",
+	nPos: 53
 });
 app.addMenuItem({
 	cName: "OpenURL4",
 	cUser: "■Creative Cloud Assets File",
 	cParent: "addHelpSubMenuAdobe",
 	cExec: "app.launchURL(\"https://assets.adobe.com/files\", true);",
-	nPos: 4
+	nPos: 54
 });
 app.addMenuItem({
 	cName: "OpenURL5",
 	cUser: "■Creative Cloud Assets Libraries",
 	cParent: "addHelpSubMenuAdobe",
 	cExec: "app.launchURL(\"https://assets.adobe.com/libraries\", true);",
-	nPos: 5
+	nPos: 55
 });
 app.addMenuItem({
 	cName: "OpenURL6",
 	cUser: "■Creative Cloud Assets XD",
 	cParent: "addHelpSubMenuAdobe",
 	cExec: "app.launchURL(\"https://assets.adobe.com/cloud-documents\", true);",
-	nPos: 6
+	nPos: 56
 });
 app.addMenuItem({
 	cName: "OpenURL7",
 	cUser: "■Publish Online",
 	cParent: "addHelpSubMenuAdobe",
 	cExec: "app.launchURL(\"https://indd.adobe.com/dashboard\", true);",
-	nPos: 7
+	nPos: 57
 });
 app.addMenuItem({
 	cName: "OpenURL8",
 	cUser: "■Adobe Lightroom Online",
 	cParent: "addHelpSubMenuAdobe",
 	cExec: "app.launchURL(\"https://lightroom.adobe.com/libraries/\", true);",
-	nPos: 8
+	nPos: 58
 });
 app.addMenuItem({
 	cName: "OpenURL9",
 	cUser: "■Adobe Fonts",
 	cParent: "addHelpSubMenuAdobe",
 	cExec: "app.launchURL(\"https://fonts.adobe.com/?locale=ja-JP\", true);",
-	nPos: 9
+	nPos: 59
 });
 app.addMenuItem({
 	cName: "appHelpOpenDocHelpUserGuide",
@@ -123,21 +124,21 @@ app.addMenuItem({
 	cExec: "appHelpOpenGuide();",
 	cEnable: "event.rc = true",
 	cMarked: "event.rc = false",
-	nPos: 10,
+	nPos: 52,
 });
 app.addMenuItem({
 	cName: "OpenURL16",
 	cUser: "■Acrobatフォーラム",
 	cParent: "addHelpSubMenuAdobe",
 	cExec: "app.launchURL(\"https://community.adobe.com/t5/acrobat%E3%83%95%E3%82%A9%E3%83%BC%E3%83%A9%E3%83%A0/ct-p/ct-acrobat-jp\", true);",
-	nPos: 11
+	nPos: 51
 });
 app.addMenuItem({
 	cName: "OpenURL17",
 	cUser: "■Acrobat Readerフォーラム",
 	cParent: "addHelpSubMenuAdobe",
 	cExec: "app.launchURL(\"https://community.adobe.com/t5/acrobat-reader-acrobat-dc-for-mobile%E3%83%95%E3%82%A9%E3%83%BC%E3%83%A9%E3%83%A0/ct-p/ct-acrobat-reader-and-reader-mobile-jp?page=1&sort=latest_replies&lang=all&tabid=all&profile.language=ja#:~:text=Acrobat%20Reader%20/%20Acrobat%20DC%20for%20Mobile%E3%83%95%E3%82%A9%E3%83%BC%E3%83%A9%E3%83%A0\", true);",
-	nPos: 12
+	nPos: 50
 });
 ////////////////////////////////////////////
 app.addMenuItem({
@@ -145,42 +146,42 @@ app.addMenuItem({
 	cUser: "リリースノート",
 	cParent: "addHelpSubMenuUrl",
 	cExec: "app.launchURL(\"https://www.adobe.com/devnet-docs/acrobatetk/tools/ReleaseNotesDC/index.html\", true);",
-	nPos: 1
+	nPos: 69
 });
 app.addMenuItem({
 	cName: "OpenURL2",
 	cUser: "Acrobat DC SDK Documentation",
 	cParent: "addHelpSubMenuUrl",
 	cExec: "app.launchURL(\"https://opensource.adobe.com/dc-acrobat-sdk-docs/acrobatsdk/\", true);",
-	nPos: 2
+	nPos: 68
 });
 app.addMenuItem({
 	cName: "OpenURL10",
 	cUser: "JavaScript API",
 	cParent: "addHelpSubMenuUrl",
 	cExec: "app.launchURL(\"https://opensource.adobe.com/dc-acrobat-sdk-docs/library/jsapiref/JS_API_AcroJS.html\", true);",
-	nPos: 10
+	nPos: 67
 });
 app.addMenuItem({
 	cName: "OpenURL11",
 	cUser: "Document Services API",
 	cParent: "addHelpSubMenuUrl",
 	cExec: "app.launchURL(\"https://documentcloud.adobe.com/dc-integration-creation-app-cdn/main.html\", true);",
-	nPos: 11
+	nPos: 66
 });
 app.addMenuItem({
 	cName: "OpenURL12",
 	cUser: "PDF Embed API",
 	cParent: "addHelpSubMenuUrl",
 	cExec: "app.launchURL(\"https://developer.adobe.com/document-services/docs/overview/pdf-embed-api/\", true);",
-	nPos: 12
+	nPos: 65
 });
 app.addMenuItem({
 	cName: "OpenURL13",
 	cUser: "AdminConsole",
 	cParent: "addHelpSubMenuUrl",
 	cExec: "app.launchURL(\"https://adminconsole.adobe.com/\", true);",
-	nPos: 13
+	nPos: 64
 });
 app.addMenuItem({
 	cName: "appHelpOpenTrustedMenu",
@@ -191,14 +192,14 @@ app.addMenuItem({
 	cExec: "appHelpOpenTrustedMenu();",
 	cEnable: "event.rc = true",
 	cMarked: "event.rc = false",
-	nPos: 14
+	nPos: 63
 });
 app.addMenuItem({
 	cName: "OpenURL15",
 	cUser: "Adobe Dev SDK",
 	cParent: "addHelpSubMenuUrl",
 	cExec: "app.launchURL(\"https://developer.adobe.com/console/servicesandapis\", true);",
-	nPos: 15
+	nPos: 62
 });
 
 app.addMenuItem({
@@ -206,7 +207,7 @@ app.addMenuItem({
 	cUser: "PrefRef Mac",
 	cParent: "addHelpSubMenuUrl",
 	cExec: "app.launchURL(\"https://www.adobe.com/devnet-docs/acrobatetk/tools/PrefRef/Macintosh/index.html\", true);",
-	nPos: 18
+	nPos: 61
 });
 
 app.addMenuItem({
@@ -214,7 +215,7 @@ app.addMenuItem({
 	cUser: "PrefRef Win",
 	cParent: "addHelpSubMenuUrl",
 	cExec: "app.launchURL(\"https://www.adobe.com/devnet-docs/acrobatetk/tools/PrefRef/Windows/index.html\", true);",
-	nPos: 19
+	nPos: 60
 });
 
 
@@ -252,7 +253,7 @@ app.addMenuItem({
 	cUser: "Stamps フォルダを開きます",
 	cParent: "addHelpSubMenuOpen",
 	cExec: "appGetStampsPath()",
-	nPos: 23
+	nPos: 24
 });
 function appGetStampsPath() {
 	try {
@@ -282,45 +283,59 @@ app.addMenuItem({
 	cUser: "Document Cloud",
 	cParent: "addHelpSubMenuSh",
 	cExec: "app.launchURL(\"https://documentcloud.adobe.com/\", true);",
-	nPos: 1
+	nPos: 81
 });
 app.addMenuItem({
 	cName: "SharedURL2",
 	cUser: "Creative Cloud Assets File",
 	cParent: "addHelpSubMenuSh",
 	cExec: "app.launchURL(\"https://assets.adobe.com/files\", true);",
-	nPos: 2
+	nPos: 82
 });
 app.addMenuItem({
 	cName: "SharedURL3",
 	cUser: "Box",
 	cParent: "addHelpSubMenuSh",
 	cExec: "app.launchURL(\"https://app.box.com/\", true);",
-	nPos: 3
+	nPos: 83
 });
 app.addMenuItem({
 	cName: "SharedURL4",
 	cUser: "DropBox",
 	cParent: "addHelpSubMenuSh",
 	cExec: "app.launchURL(\"https://www.dropbox.com/home\", true);",
-	nPos: 4
+	nPos: 84
 });
 app.addMenuItem({
 	cName: "SharedURL5",
 	cUser: "GoogleDrive",
 	cParent: "addHelpSubMenuSh",
 	cExec: "app.launchURL(\"https://drive.google.com/\", true);",
-	nPos: 5
+	nPos: 85
 });
 app.addMenuItem({
 	cName: "SharedURL6",
 	cUser: "OneDrive",
 	cParent: "addHelpSubMenuSh",
 	cExec: "app.launchURL(\"https://onedrive.live.com/\", true);",
-	nPos: 6
+	nPos: 86
 });
 ////////////////////////////////////////////////////////////////////////
 //
+app.addMenuItem({
+	cName: "appviewState",
+	cUser: "viewState",
+	cLabel: "viewState",
+	cTooltext: "viewState",
+	cParent: "addHelpSubMenuCon",
+	cExec: "doViewStatePrint()",
+	cEnable: "event.rc = true",
+	cMarked: "event.rc = false",
+	nPos: 75
+});
+
+
+
 app.addMenuItem({
 	cName: "appRotationCheckMenu",
 	cUser: "PDFページの回転チェック",
@@ -330,7 +345,7 @@ app.addMenuItem({
 	cExec: "doRotationChk();",
 	cEnable: "event.rc = true",
 	cMarked: "event.rc = false",
-	nPos: 4
+	nPos: 74
 });
 app.addMenuItem({
 	cName: "appVersionCheckMenu",
@@ -341,7 +356,7 @@ app.addMenuItem({
 	cExec: "doChkVersionChk();",
 	cEnable: "event.rc = true",
 	cMarked: "event.rc = false",
-	nPos: 3
+	nPos: 73
 });
 app.addMenuItem({
 	cName: "appHelpSubPrintMenuList",
@@ -352,7 +367,7 @@ app.addMenuItem({
 	cExec: "appHelpMenuList();",
 	cEnable: "event.rc = true",
 	cMarked: "event.rc = false",
-	nPos: 2
+	nPos: 72
 });
 //
 app.addMenuItem({
@@ -364,7 +379,7 @@ app.addMenuItem({
 	cExec: "console.show();",
 	cEnable: "event.rc = true",
 	cMarked: "event.rc = false",
-	nPos: 1
+	nPos: 71
 });
 ////////////////
 function doRotationChk() {
@@ -577,5 +592,34 @@ function appHelpMenuList() {
 	docReport.divide();
 	docReport.open("メニュー項目一覧");
 	}
+/*
+console.println("");
+console.println("");
+var listMenuArray = app.listMenuItems();
+for (var numCntNo in listMenuArray) {
+console.println(listMenuArray[numCntNo] + "\n");
+}
+*/
+
 }
 
+function doViewStatePrint() {
+	var objActiveDocs = app.activeDocs;
+	var numCntDoc = objActiveDocs.length;
+	if (numCntDoc === 0) {
+		console.clear();
+		console.show();
+		console.println("ドキュメントを開いてから実行してください");
+		return;
+	}
+	var objActiveDoc = objActiveDocs[0];
+	console.clear();
+	console.show();
+	var viewStateDictStr = objActiveDoc.viewState.toSource();
+	var viewStateDict = eval(viewStateDictStr);
+	for (var itemkey in viewStateDict) {
+		if (viewStateDict.hasOwnProperty(itemkey)) {
+			console.println(itemkey + ": " + viewStateDict[itemkey]);
+		}
+	}
+}
