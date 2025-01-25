@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>DisplayName</key>
+	<string>Adobe Acrobat</string>
+	<key>EULAAcceptedEntry</key>
+	<array>
+		<string>~/Library/Preferences/com.adobe.Acrobat.Pro.plist</string>
+		<string>2017/EULAAcceptedForBrowser</string>
+	</array>
+	<key>FeatureLockDown</key>
+	<array>
+		<string>/Library/Preferences/com.adobe.Acrobat.Pro.plist</string>
+		<string>2017/FeatureLockdown/bUpdater</string>
+	</array>
+	<key>Language</key>
+	<string>MUL</string>
+	<key>ManifestFileURL</key>
+	<dict>
+		<key>URL</key>
+		<string>arm-manifests/mac/Acrobat2017/acrobat/AcrobatManifest.xml</string>
+		<key>httpsURLBase</key>
+		<string>https://armmf.adobe.com</string>
+	</dict>
+	<key>ProductExistsPath</key>
+	<array>
+		<string>@INSTALL_DIR@/Adobe Acrobat.app/Contents/MacOS/AdobeAcrobat</string>
+		<string>File</string>
+	</array>
+	<key>ProductRoot</key>
+	<string>@INSTALL_DIR@/Adobe Acrobat.app</string>
+	<key>UpdateCycle</key>
+	<integer>4320</integer>
+	<key>UpdateMode</key>
+	<integer>0</integer>
+	<key>Version</key>
+	<array>
+		<string>@INSTALL_DIR@/Adobe Acrobat.app/Contents/Info.plist</string>
+	</array>
+	<key>VersionFileURL</key>
+	<dict>
+		<key>URL</key>
+		<string>arm-manifests/mac/Acrobat2017/acrobat/current_version.txt</string>
+		<key>httpsURLBase</key>
+		<string>https://armmf.adobe.com</string>
+	</dict>
+</dict>
+</plist>

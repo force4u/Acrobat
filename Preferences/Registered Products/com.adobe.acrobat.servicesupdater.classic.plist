@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>DisplayName</key>
+	<string>Adobe Acrobat</string>
+	<key>EULAAcceptedEntry</key>
+	<array>
+		<string>~/Library/Preferences/com.adobe.Acrobat.Pro.plist</string>
+		<string>Classic/EULAAcceptedForBrowser</string>
+	</array>
+	<key>FeatureLockDown</key>
+	<array>
+		<string>/Library/Preferences/com.adobe.Acrobat.Pro.plist</string>
+		<string>Classic/FeatureLockdown/cServices/bUpdater</string>
+	</array>
+	<key>IsVariantSupported</key>
+	<true/>
+	<key>Language</key>
+	<string>MUL</string>
+	<key>ManifestFileURL</key>
+	<dict>
+		<key>URL</key>
+		<string>arm-manifests/mac/ServicesUpdater/acrobatSCA/Classic/AcroSCAManifest.xml</string>
+		<key>httpsURLBase</key>
+		<string>https://armmf.adobe.com</string>
+	</dict>
+	<key>ProductExistsPath</key>
+	<array>
+		<string>/Applications/Adobe Acrobat Classic/Adobe Acrobat.app/Contents/MacOS/AdobeAcrobat</string>
+		<string>File</string>
+	</array>
+	<key>ProductRoot</key>
+	<string>/Applications/Adobe Acrobat Classic/Adobe Acrobat.app</string>
+	<key>UpdateCycle</key>
+	<integer>1440</integer>
+	<key>UpdateMode</key>
+	<integer>0</integer>
+	<key>VariantVersion</key>
+	<array>
+		<string>/Library/Application Support/Adobe/Acrobat/Classic/SupportFiles/Preferences/com.adobe.acrobat.scainstaller.plist</string>
+		<string>SCAPackageLevel</string>
+	</array>
+	<key>Version</key>
+	<array>
+		<string>/Library/Preferences/com.adobe.acrobat.Classic.WebResource.plist</string>
+		<string>tFullVersion</string>
+	</array>
+	<key>VersionFileURL</key>
+	<dict>
+		<key>URL</key>
+		<string>arm-manifests/mac/ServicesUpdater/acrobatSCA/Classic/current_version.txt</string>
+		<key>httpsURLBase</key>
+		<string>https://armmf.adobe.com</string>
+	</dict>
+</dict>
+</plist>
