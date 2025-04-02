@@ -6,6 +6,8 @@
 #サンドボックスモードの場合
 #export SBXHOME="$CONT/com.adobe.Reader/Data/"
 #アクセス権を755でターミナルにドロップしてください
+#v1 FeatureLockdownの設定のみ作成
+#v2 TabVisibleの設定も追加しました
 #################################################
 #ユーザー名
 STAT_USR=$(/usr/bin/stat -f%Su /dev/console)
@@ -40,6 +42,8 @@ function DO_CHK_VALUE {
 /bin/echo "現在の設定値です"
 
 STR_SET_PATH=":DC:FeatureLockdown:EnableGentech:1"
+DO_CHK_VALUE "$STR_SET_PATH"
+STR_SET_PATH=":DC:AVGeneral:Dockables:1:GenTechAcrobatAI:1:TabVisible:1"
 DO_CHK_VALUE "$STR_SET_PATH"
 
 ################################################
@@ -89,11 +93,16 @@ function DO_SET_FALSE_ARRAY {
 
 STR_SET_PATH=":DC:FeatureLockdown:EnableGentech:1"
 DO_SET_FALSE_ARRAY "$STR_SET_PATH"
+STR_SET_PATH=":DC:AVGeneral:Dockables:1:GenTechAcrobatAI:1:TabVisible:1"
+DO_SET_FALSE_ARRAY "$STR_SET_PATH"
+
 #保存
 /usr/libexec/PlistBuddy -c "Save" "$PATH_PLIST"
 #確認
 /bin/echo "変更後の値です"
 STR_SET_PATH=":DC:FeatureLockdown:EnableGentech:1"
+DO_CHK_VALUE "$STR_SET_PATH"
+STR_SET_PATH=":DC:AVGeneral:Dockables:1:GenTechAcrobatAI:1:TabVisible:1"
 DO_CHK_VALUE "$STR_SET_PATH"
 
 exit 0

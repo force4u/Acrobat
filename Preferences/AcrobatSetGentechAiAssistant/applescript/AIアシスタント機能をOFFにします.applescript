@@ -1,8 +1,10 @@
 #!/usr/bin/env osascript
 ----+----1----+----2----+-----3----+----4----+----5----+----6----+----7
-#com.cocolog-nifty.quicktimer.icefloe
-# Acrobat のAIアシスタント機能をOFFにします
-#　
+(*
+Acrobat のAIアシスタント機能をOFFにします
+v1 FeatureLockdown設定
+v2 TabVisible設定を追加
+com.cocolog-nifty.quicktimer.icefloe*)
 ----+----1----+----2----+-----3----+----4----+----5----+----6----+----7
 use AppleScript version "2.8"
 use framework "Foundation"
@@ -82,6 +84,8 @@ set listResponse to (refMe's NSPropertyListSerialization's propertyListWithData:
 set ocidPlistDict to (item 1 of listResponse)
 #ここでPLISTのROOTがDICT
 set ocidDCdict to ocidPlistDict's objectForKey:("DC")
+############################
+#FeatureLockdown
 set ocidFeatureLockdownDict to ocidDCdict's objectForKey:("FeatureLockdown")
 if ocidFeatureLockdownDict = (missing value) then
 	set ocidFeatureLockdownDict to refMe's NSMutableDictionary's alloc()'s init()
@@ -105,6 +109,18 @@ else
 end if
 log className() of ocidPlistDict as text
 log ocidPlistDict's allKeys() as list
+############################
+#AVGeneral
+set ocidAVGeneralDict to ocidDCdict's objectForKey:("AVGeneral")
+set ocidDockablesArray to ocidAVGeneralDict's objectForKey:("Dockables")
+set ocidItem1Dict to ocidDockablesArray's objectAtIndex:(1)
+set ocidGenTechAcrobatAIArray to ocidItem1Dict's objectForKey:("GenTechAcrobatAI")
+set ocidItem1GenTechDict to ocidGenTechAcrobatAIArray's objectAtIndex:(1)
+set ocidTabVisibleAIArray to ocidItem1GenTechDict's objectForKey:("TabVisible")
+ocidTabVisibleAIArray's replaceObjectAtIndex:(1) withObject:(false)
+
+############################
+#保存
 
 set ocidFormat to (refMe's NSPropertyListBinaryFormat_v1_0)
 set listResponse to refMe's NSPropertyListSerialization's dataWithPropertyList:(ocidPlistDict) format:(ocidFormat) options:0 |error|:(reference)

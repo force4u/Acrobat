@@ -1,8 +1,10 @@
 #!/usr/bin/env osascript
 ----+----1----+----2----+-----3----+----4----+----5----+----6----+----7
-#com.cocolog-nifty.quicktimer.icefloe
-# Acrobat ‚ÌAIƒAƒVƒXƒ^ƒ“ƒg‹@”\‚ğON‚É‚µ‚Ü‚·
-#@
+(*
+Acrobat ã®AIã‚¢ã‚·ã‚¹ã‚¿ãƒ³ãƒˆæ©Ÿèƒ½ã‚’ONã«ã—ã¾ã™
+v1 FeatureLockdownè¨­å®š
+v2 TabVisibleè¨­å®šã‚’è¿½åŠ 
+com.cocolog-nifty.quicktimer.icefloe*)
 ----+----1----+----2----+-----3----+----4----+----5----+----6----+----7
 use AppleScript version "2.8"
 use framework "Foundation"
@@ -11,9 +13,9 @@ use framework "UniformTypeIdentifiers"
 use scripting additions
 property refMe : a reference to current application
 
-set listProduct to {"y‚PzDCReade(’Êí)", "y‚QzDCReade(SandBox)", "y‚RzDCPro(’Êí)", "y‚SzDCPro(SandBox)"} as list
+set listProduct to {"ã€ï¼‘ã€‘DCReade(é€šå¸¸)", "ã€ï¼’ã€‘DCReade(SandBox)", "ã€ï¼“ã€‘DCPro(é€šå¸¸)", "ã€ï¼”ã€‘DCPro(SandBox)"} as list
 
-#ƒ_ƒCƒAƒƒO‘I‘ğ
+#ãƒ€ã‚¤ã‚¢ãƒ­ã‚°é¸æŠ
 set strName to (name of current application) as text
 if strName is "osascript" then
 	tell application "SystemUIServer" to activate
@@ -21,24 +23,24 @@ else
 	tell current application to activate
 end if
 ###
-set strTitle to ("‘I‚ñ‚Å‚­‚¾‚³‚¢") as text
-set strPrompt to ("‚Ğ‚Æ‚Â‘I‚ñ‚Å‚­‚¾‚³‚¢€nAiƒAƒVƒXƒ^ƒ“ƒg‚ğONİ’è‚É‚µ‚Ü‚·") as text
+set strTitle to ("é¸ã‚“ã§ãã ã•ã„") as text
+set strPrompt to ("ã²ã¨ã¤é¸ã‚“ã§ãã ã•ã„\nAiã‚¢ã‚·ã‚¹ã‚¿ãƒ³ãƒˆã‚’ONè¨­å®šã«ã—ã¾ã™") as text
 try
 	tell application "SystemUIServer"
-		#Activate‚Í•K{
+		#Activateã¯å¿…é ˆ
 		activate
-		set valueResponse to (choose from list listProduct with title strTitle with prompt strPrompt default items (item 1 of listProduct) OK button name "OK" cancel button name "ƒLƒƒƒ“ƒZƒ‹" with empty selection allowed without multiple selections allowed)
+		set valueResponse to (choose from list listProduct with title strTitle with prompt strPrompt default items (item 1 of listProduct) OK button name "OK" cancel button name "ã‚­ãƒ£ãƒ³ã‚»ãƒ«" with empty selection allowed without multiple selections allowed)
 	end tell
 on error
 	log "Error choose from list"
 	return false
 end try
 if (class of valueResponse) is boolean then
-	log "Error ƒLƒƒƒ“ƒZƒ‹‚µ‚Ü‚µ‚½"
+	log "Error ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã—ã¾ã—ãŸ"
 	return false
 else if (class of valueResponse) is list then
 	if valueResponse is {} then
-		log "Error ‰½‚à‘I‚ñ‚Å‚¢‚Ü‚¹‚ñ"
+		log "Error ä½•ã‚‚é¸ã‚“ã§ã„ã¾ã›ã‚“"
 		return false
 	else
 		set strResponse to (item 1 of valueResponse) as text
@@ -49,39 +51,41 @@ end if
 set appFileManager to refMe's NSFileManager's defaultManager()
 set ocidURLsArray to (appFileManager's URLsForDirectory:(refMe's NSLibraryDirectory) inDomains:(refMe's NSUserDomainMask))
 set ocidLibraryDirPathURL to ocidURLsArray's firstObject()
-if strResponse is "y‚PzDCReade(’Êí)" then
-	#y‚PzAcrobat Reader‚Ìê‡i’Êíj
+if strResponse is "ã€ï¼‘ã€‘DCReade(é€šå¸¸)" then
+	#ã€ï¼‘ã€‘Acrobat Readerã®å ´åˆï¼ˆé€šå¸¸ï¼‰
 	set strPlistFileName to ("com.adobe.Reader.plist") as text
 	set ocidPrefDirPathURL to ocidLibraryDirPathURL's URLByAppendingPathComponent:("Preferences") isDirectory:(true)
-else if strResponse is "y‚QzDCReade(SandBox)" then
-	#y‚QzAcrobat Reader‚Ìê‡iƒTƒ“ƒhƒ{ƒbƒNƒXj
+else if strResponse is "ã€ï¼’ã€‘DCReade(SandBox)" then
+	#ã€ï¼’ã€‘Acrobat Readerã®å ´åˆï¼ˆã‚µãƒ³ãƒ‰ãƒœãƒƒã‚¯ã‚¹ï¼‰
 	set strPlistFileName to ("com.adobe.Reader.plist") as text
 	set ocidPrefDirPathURL to ocidLibraryDirPathURL's URLByAppendingPathComponent:("Containers/com.adobe.Reader/Data/Library/Preferences") isDirectory:(true)
-else if strResponse is "y‚RzDCPro(’Êí)" then
-	#y‚RzAcrobat»•i”Åi’Êíj
+else if strResponse is "ã€ï¼“ã€‘DCPro(é€šå¸¸)" then
+	#ã€ï¼“ã€‘Acrobatè£½å“ç‰ˆï¼ˆé€šå¸¸ï¼‰
 	set strPlistFileName to ("com.adobe.Acrobat.Pro.plist") as text
 	set ocidPrefDirPathURL to ocidLibraryDirPathURL's URLByAppendingPathComponent:("Preferences") isDirectory:(true)
-else if strResponse is "y‚SzDCPro(SandBox)" then
-	#y‚SzAcrobat»•i”ÅiƒTƒ“ƒhƒ{ƒbƒNƒXj
+else if strResponse is "ã€ï¼”ã€‘DCPro(SandBox)" then
+	#ã€ï¼”ã€‘Acrobatè£½å“ç‰ˆï¼ˆã‚µãƒ³ãƒ‰ãƒœãƒƒã‚¯ã‚¹ï¼‰
 	set strPlistFileName to ("com.adobe.Acrobat.Pro.plist") as text
 	set ocidPrefDirPathURL to ocidLibraryDirPathURL's URLByAppendingPathComponent:("Containers/com.adobe.Acrobat.Pro/Data/Library/Preferences") isDirectory:(true)
 end if
-#PLISTƒpƒX
+#PLISTãƒ‘ã‚¹
 set ocidPlistFilePathURL to ocidPrefDirPathURL's URLByAppendingPathComponent:(strPlistFileName) isDirectory:(false)
-#PLIST“Ç‚İ‚İ
+#PLISTèª­ã¿è¾¼ã¿
 set ocidOption to (refMe's NSDataReadingMappedIfSafe)
 set listResponse to (refMe's NSData's alloc()'s initWithContentsOfURL:(ocidPlistFilePathURL) options:(ocidOption) |error|:(reference))
 set ocidReadData to (item 1 of listResponse)
 if ocidReadData = (missing value) then
-	return "İ’èƒtƒ@ƒCƒ‹‚ª‚ ‚è‚Ü‚¹‚ñ"
+	return "è¨­å®šãƒ•ã‚¡ã‚¤ãƒ«ãŒã‚ã‚Šã¾ã›ã‚“"
 end if
 #PropertyListSerialization
 set ocidFormat to (refMe's NSPropertyListBinaryFormat_v1_0)
 set ocidOption to refMe's NSPropertyListMutableContainersAndLeaves
 set listResponse to (refMe's NSPropertyListSerialization's propertyListWithData:(ocidReadData) options:(ocidOption) format:(ocidFormat) |error|:(reference))
 set ocidPlistDict to (item 1 of listResponse)
-#‚±‚±‚ÅPLIST‚ÌROOT‚ªDICT
+#ã“ã“ã§PLISTã®ROOTãŒDICT
 set ocidDCdict to ocidPlistDict's objectForKey:("DC")
+############################
+#FeatureLockdown
 set ocidFeatureLockdownDict to ocidDCdict's objectForKey:("FeatureLockdown")
 if ocidFeatureLockdownDict = (missing value) then
 	set ocidFeatureLockdownDict to refMe's NSMutableDictionary's alloc()'s init()
@@ -105,26 +109,37 @@ else
 end if
 log className() of ocidPlistDict as text
 log ocidPlistDict's allKeys() as list
+############################
+#AVGeneral
+set ocidAVGeneralDict to ocidDCdict's objectForKey:("AVGeneral")
+set ocidDockablesArray to ocidAVGeneralDict's objectForKey:("Dockables")
+set ocidItem1Dict to ocidDockablesArray's objectAtIndex:(1)
+set ocidGenTechAcrobatAIArray to ocidItem1Dict's objectForKey:("GenTechAcrobatAI")
+set ocidItem1GenTechDict to ocidGenTechAcrobatAIArray's objectAtIndex:(1)
+set ocidTabVisibleAIArray to ocidItem1GenTechDict's objectForKey:("TabVisible")
+ocidTabVisibleAIArray's replaceObjectAtIndex:(1) withObject:(true)
 
+############################
+#ä¿å­˜
 set ocidFormat to (refMe's NSPropertyListBinaryFormat_v1_0)
 set listResponse to refMe's NSPropertyListSerialization's dataWithPropertyList:(ocidPlistDict) format:(ocidFormat) options:0 |error|:(reference)
 if (item 2 of listResponse) = (missing value) then
 	set ocidPlistSaveData to (item 1 of listResponse)
-else if (item 2 of listResponse) ‚ (missing value) then
+else if (item 2 of listResponse) â‰  (missing value) then
 	set strErrorNO to (item 2 of listResponse)'s code() as text
 	set strErrorMes to (item 2 of listResponse)'s localizedDescription() as text
-	current application's NSLog("¡F" & strErrorNO & strErrorMes)
-	return "ƒGƒ‰[‚µ‚Ü‚µ‚½" & strErrorNO & strErrorMes
+	current application's NSLog("â– ï¼š" & strErrorNO & strErrorMes)
+	return "ã‚¨ãƒ©ãƒ¼ã—ã¾ã—ãŸ" & strErrorNO & strErrorMes
 end if
 
-#•Û‘¶@
+#ä¿å­˜ã€€
 set ocidOption to (refMe's NSDataWritingAtomic)
 set listDone to ocidPlistSaveData's writeToURL:(ocidPlistFilePathURL) options:(ocidOption) |error|:(reference)
 if (item 1 of listDone) is true then
-	return "³íI—¹"
+	return "æ­£å¸¸çµ‚äº†"
 else if (item 1 of listDone) is false then
 	set strErrorNO to (item 2 of listResponse)'s code() as text
 	set strErrorMes to (item 2 of listResponse)'s localizedDescription() as text
-	current application's NSLog("¡F" & strErrorNO & strErrorMes)
-	return "ƒGƒ‰[‚µ‚Ü‚µ‚½" & strErrorNO & strErrorMes
+	current application's NSLog("â– ï¼š" & strErrorNO & strErrorMes)
+	return "ã‚¨ãƒ©ãƒ¼ã—ã¾ã—ãŸ" & strErrorNO & strErrorMes
 end if
