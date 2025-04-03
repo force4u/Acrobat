@@ -4,3 +4,6 @@ AppleScriptとBash版があります
 
 #v1 FeatureLockdownの設定のみ作成
 #v2 TabVisibleの設定も追加しました
+
+![2025040404291080x1080144](https://github.com/user-attachments/assets/1f60dcd2-e3f1-4523-86a1-8edeb9a5dd2c)
+
