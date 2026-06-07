@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>DESCRIPTION</key>
+	<string>Last Resort Font. Contribute to unicode-org/last-resort-font development by creating an account on GitHub.</string>
+	<key>DOMAIN</key>
+	<string>github.com</string>
+	<key>FAVICON_URL</key>
+	<string>https://github.githubassets.com/favicons/favicon.svg</string>
+	<key>IMAGE_URL</key>
+	<string>https://repository-images.githubusercontent.com/302411857/b9d8ed80-094f-11eb-8c86-868dc2625400</string>
+	<key>KEYWORDS</key>
+	<string></string>
+	<key>OG_TYPE</key>
+	<string>object</string>
+	<key>PREFERRED_FORMAT</key>
+	<string>text/plain;content=plain-url</string>
+	<key>TITLE</key>
+	<string>unicode-org/last-resort-font: Last Resort Font</string>
+	<key>TYPE</key>
+	<string>website</string>
+	<key>URL</key>
+	<string>https://github.com/unicode-org/last-resort-font</string>
+</dict>
+</plist>
