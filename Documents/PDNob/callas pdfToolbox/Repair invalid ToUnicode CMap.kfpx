@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pdfpreflight version="16.0">
+	<package>
+		<id3>cb34e48f05e4787d681f119ca6b6cb28</id3>
+		<pdfxoutintentlist>
+		</pdfxoutintentlist>
+		<iccprofilelist>
+		</iccprofilelist>
+		<ccpolicies>
+		</ccpolicies>
+		<occdsetups>
+		</occdsetups>
+		<curves>
+		</curves>
+		<fspolicies>
+		</fspolicies>
+		<resources>
+		</resources>
+		<variables>
+		</variables>
+		<conditions>
+		</conditions>
+		<rules>
+		</rules>
+		<rulesets>
+		</rulesets>
+		<fixups>
+			<fixup>
+				<id1>F92ee4f1fd5a18dbce4b751e48644c694</id1>
+				<id2>F776eaa5bad14bbc925f31c2e36ecf70c</id2>
+				<id3>0b6e5b90862e98019ae7a50bfdd6979d</id3>
+				<id4>d1d893fc7f8217caea2cbad443a1fc2c</id4>
+				<id5>F5334aeb899e2dfaeb5c8aea493fa9e8a</id5>
+				<name>Repair invalid ToUnicode CMap</name>
+				<comment></comment>
+				<flags user_units="1" scope="16" edit="1" visible="1"></flags>
+				<creation>D:20261005092822+02&apos;00&apos;</creation>
+				<modification>D:20261005092834+02&apos;00&apos;</modification>
+				<fcfgs>
+					<fcfg>
+						<ffeat>RepairToUnicodeCMap</ffeat>
+						<fparams>
+						</fparams>
+					</fcfg>
+				</fcfgs>
+				<reportFailed></reportFailed>
+			</fixup>
+		</fixups>
+		<fixupsets>
+			<fixupset>
+				<id1>U0cf2398fbb63cb9100b28f24670398c1</id1>
+				<id2>U9da204e942ac56ae2bc962137b2eec4a</id2>
+				<id3>136083b349ae3477f674d86d7c45b8be</id3>
+				<id4>b68e06e2bf4abf20e40ab0ca0c483de4</id4>
+				<id5>U9da204e942ac56ae2bc962137b2eec4a</id5>
+				<name>UUUU_FIXUPSET_DEF_NAME</name>
+				<comment>UUUU_FIXUPSET_DEF_NAME</comment>
+				<flags edit="1" visible="1" dict="1"></flags>
+				<fixups>
+					<fixup>F92ee4f1fd5a18dbce4b751e48644c694</fixup>
+				</fixups>
+			</fixupset>
+		</fixupsets>
+		<actions>
+		</actions>
+		<profiles>
+			<profile>
+				<id1>Pc7c71bc632e87111111834f7725e5f1f</id1>
+				<id2>F776eaa5bad14bbc925f31c2e36ecf70c</id2>
+				<id3>49cb877a1cbac06eea2c96a49c238298</id3>
+				<id4>dbfeb83a2759ef74252bab60816bedf4</id4>
+				<id5>F776eaa5bad14bbc925f31c2e36ecf70c</id5>
+				<name>Repair invalid ToUnicode CMap</name>
+				<comment></comment>
+				<flags edit="1" visible="1"></flags>
+				<creation>D:20261005092837+02&apos;00&apos;</creation>
+				<modification>D:20261005092843+02&apos;00&apos;</modification>
+				<pdfstd>
+					<pdfx convert="0"></pdfx>
+					<pdfa convert="0"></pdfa>
+					<pdfe convert="0"></pdfe>
+					<outcond></outcond>
+					<trapped>0</trapped>
+					<oioptions>0</oioptions>
+				</pdfstd>
+				<pdfstdemb>
+					<pdfx convert="0"></pdfx>
+					<pdfa convert="0"></pdfa>
+					<pdfe convert="0"></pdfe>
+					<outcond></outcond>
+					<trapped>0</trapped>
+					<oioptions>0</oioptions>
+					<afrelationship set_relationship="0"></afrelationship>
+				</pdfstdemb>
+				<wizard>
+				</wizard>
+				<rulesets>
+				</rulesets>
+				<fixupsets>
+					<fixupset>U0cf2398fbb63cb9100b28f24670398c1</fixupset>
+				</fixupsets>
+			</profile>
+		</profiles>
+		<metaprofs>
+		</metaprofs>
+		<profgroups>
+		</profgroups>
+	</package>
+</pdfpreflight>
